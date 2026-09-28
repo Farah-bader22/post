@@ -3,24 +3,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Heart, Clock, Copy, Check, MapPin, Star } from "lucide-react";
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 50 },
-  visible: (custom = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.9, delay: custom * 0.1, ease: [0.22, 1, 0.36, 1] }
-  })
-};
-
-const scaleUp = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.9, ease: "backOut" }
-  }
-};
-
 export default function RoyalEngagementFinal() {
   const [stage, setStage] = useState<"envelope" | "pulling" | "opened">("envelope");
   const [copied, setCopied] = useState(false);
@@ -91,7 +73,6 @@ export default function RoyalEngagementFinal() {
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
-      {/* الحاوية الرئيسية بضبط متساوي وتوسيط كامل */}
       <div className="w-full max-w-[430px] h-screen sm:h-[920px] bg-[#1A0307] shadow-[0_30px_100px_rgba(0,0,0,0.95)] relative overflow-hidden flex flex-col sm:rounded-[45px] border-[8px] border-[#0E0103]">
 
         <AnimatePresence mode="wait">
@@ -106,7 +87,6 @@ export default function RoyalEngagementFinal() {
             >
               <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:30px_30px]"></div>
 
-              {/* مغلف متمركز بدقة تامة */}
               <motion.div 
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -118,7 +98,7 @@ export default function RoyalEngagementFinal() {
                 <motion.div
                   initial={{ y: 150, opacity: 0 }}
                   animate={stage === "pulling" ? { y: -15, opacity: 1 } : { y: 150, opacity: 0 }}
-                  transition={{ duration: 2.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 2.8, delay: 0.3 }}
                   className="absolute inset-x-6 top-16 bottom-16 bg-[#FFFDF9] text-[#220308] rounded-xl shadow-[0_25px_50px_rgba(0,0,0,0.6)] p-5 flex flex-col items-center justify-center text-center z-30 border-2 border-[#FBE8C9]"
                 >
                   <span className="text-[10px] tracking-[0.4em] uppercase text-[#801326] font-cairo font-bold">OFFICIAL INVITATION</span>
@@ -132,7 +112,7 @@ export default function RoyalEngagementFinal() {
                 <motion.div 
                   initial={{ rotateX: 0 }}
                   animate={stage === "pulling" ? { rotateX: -180, y: -260, opacity: 0.1 } : { rotateX: 0 }}
-                  transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 2.2 }}
                   style={{ transformOrigin: "top" }}
                   className="absolute top-0 inset-x-0 h-[260px] bg-gradient-to-b from-[#6B0B1F] via-[#4A0916] to-[#2B040A] [clip-path:polygon(0_0%,100%_0%,50%_100%)] z-40 shadow-xl border-b-2 border-[#D4AF37]/70"
                 ></motion.div>
@@ -160,7 +140,7 @@ export default function RoyalEngagementFinal() {
               key="content"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
+              transition={{ duration: 1.5 }}
               className="flex-1 overflow-y-auto scrollbar-hide bg-[#0A0103] relative text-[#F9F6F0] pb-28"
             >
               
@@ -195,7 +175,7 @@ export default function RoyalEngagementFinal() {
                 <motion.div 
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
+                  transition={{ duration: 1.5, delay: 0.3 }}
                   className="relative z-25 w-full space-y-3 pb-8 text-center"
                 >
                   <span className="text-[11px] tracking-[0.4em] uppercase text-[#D4AF37] font-cairo font-bold flex items-center justify-center gap-2">
@@ -218,10 +198,10 @@ export default function RoyalEngagementFinal() {
               </div>
 
               <motion.div 
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.5 }}
-                variants={fadeIn}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
                 className="px-6 py-10 text-center space-y-4 bg-[#FAF7F2] text-[#220308] z-10 shadow-md"
               >
                 <Heart className="mx-auto text-[#D4AF37]" size={30} />
@@ -242,10 +222,10 @@ export default function RoyalEngagementFinal() {
 
               {/* Countdown */}
               <motion.div 
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.5 }}
-                variants={scaleUp}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
                 className="px-6 py-10 text-center space-y-6 bg-[#220308]"
               >
                 <div className="flex items-center justify-center gap-2 text-[#D4AF37]">
@@ -271,10 +251,10 @@ export default function RoyalEngagementFinal() {
 
               {/* Tabs */}
               <motion.div 
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.4 }}
-                variants={fadeIn}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
                 className="bg-[#FAF7F2] text-[#220308] px-6 py-10 text-center space-y-5 shadow-md"
               >
                 <h3 className="text-xs font-cairo tracking-[0.3em] uppercase font-black text-[#801326]">
@@ -297,7 +277,7 @@ export default function RoyalEngagementFinal() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    transition={{ duration: 0.5 }}
                     className="text-xs text-stone-700 leading-relaxed font-cairo font-medium max-w-xs mx-auto min-h-[50px]"
                   >
                     {tabContent[activeTab]}
@@ -327,7 +307,7 @@ export default function RoyalEngagementFinal() {
                       key={index}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.5 }}
+                      viewport={{ once: true }}
                       transition={{ duration: 0.8, delay: index * 0.15 }}
                       whileHover={{ scale: 1.05 }}
                       className="h-32 rounded-xl overflow-hidden border border-[#D4AF37]/50 shadow-xl relative group flex flex-col justify-end p-2 text-center"
@@ -351,10 +331,10 @@ export default function RoyalEngagementFinal() {
 
               {/* Venue */}
               <motion.div 
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.5 }}
-                variants={fadeIn}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
                 className="px-6 py-10 space-y-4 bg-[#FAF7F2] text-[#220308] shadow-md"
               >
                 <h3 className="text-xs font-cairo tracking-[0.3em] uppercase font-black text-[#801326] text-center">
@@ -409,9 +389,9 @@ export default function RoyalEngagementFinal() {
 
               {/* Footer */}
               <div className="bg-[#140103] px-6 py-8 text-center border-t border-[#D4AF37]/20">
-                {/* <div className="text-[10px] tracking-[0.4em] text-[#D4AF37] uppercase font-cairo font-bold">
+                <div className="text-[10px] tracking-[0.4em] text-[#D4AF37] uppercase font-cairo font-bold">
                   ROYAL ENGAGEMENT · PALESTINE, GAZA · 2026
-                </div> */}
+                </div>
               </div>
 
             </motion.div>

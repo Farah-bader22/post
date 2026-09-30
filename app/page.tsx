@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Heart, Clock, Copy, Check, MapPin, Star } from "lucide-react";
+import { Sparkles, Heart, Clock, Copy, Check, MapPin, Star, ArrowRight } from "lucide-react";
 
 export default function RoyalEngagementFinal() {
   const [stage, setStage] = useState<"envelope" | "pulling" | "opened">("envelope");
@@ -34,19 +34,20 @@ export default function RoyalEngagementFinal() {
     return () => clearInterval(timer);
   }, []);
 
-  const heroImage = "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=85";
+  const heroImage =  "/images/moment4.jpeg";
   const galleryImgs = [
-    "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80",
-    "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80",
-    "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80"
+    "/images/moment1.jpeg",
+    "/images/moment2.jpeg",
+    "/images/moment3.jpeg"
   ];
 
-  const handleOpenSequence = () => {
+  const handleOpenEnvelope = () => {
     if (stage !== "envelope") return;
     setStage("pulling");
-    setTimeout(() => {
-      setStage("opened");
-    }, 3500);
+  };
+
+  const handleManualOpen = () => {
+    setStage("opened");
   };
 
   const copyAddress = () => {
@@ -55,12 +56,11 @@ export default function RoyalEngagementFinal() {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  // التبويبات أصبحت باللغة الإنجليزية الراقية
   const tabContent = [
-    "A blessed beginning uniting two hearts in love, harmony, and endless hope.",
-    "Sincere vows and promises to build a bright and peaceful future together.",
-    "Stepping forward hand in hand to create the most beautiful memories."
-  ];
+    "تشريفكم الكريم يضفي على اللقاء أسمى معاني الفرح والسرور.",
+    "إلى من تزهو بوجودهم المناسبات وتطيب بلقياهم اللحظات.",
+    "أهلاً ومرحباً بمن لبى الدعوة وأضفى على الليلة بهاءها."
+];
 
   return (
     <main className="min-h-screen bg-[#0A0103] flex items-center justify-center p-0 sm:p-4 font-['Cairo',serif] text-[#F9F6F0]" dir="ltr">
@@ -92,50 +92,69 @@ export default function RoyalEngagementFinal() {
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
-                className="relative w-full max-w-[380px] h-[620px] bg-gradient-to-b from-[#4A0916] via-[#2B040A] to-[#140103] shadow-[0_40px_90px_rgba(0,0,0,0.9)] border-2 border-[#D4AF37]/40 rounded-2xl overflow-hidden flex flex-col justify-between my-auto"
+                className="relative w-full max-w-[380px] h-[660px] bg-gradient-to-b from-[#4A0916] via-[#2B040A] to-[#140103] shadow-[0_40px_90px_rgba(0,0,0,0.9)] border-2 border-[#D4AF37]/50 rounded-2xl overflow-hidden flex flex-col justify-between my-auto"
               >
-                <div className="absolute inset-5 border border-[#D4AF37]/30 rounded-xl pointer-events-none z-30"></div>
+                <div className="absolute inset-4 border border-[#D4AF37]/30 rounded-xl pointer-events-none z-30"></div>
 
                 <motion.div
-                  initial={{ y: 150, opacity: 0 }}
-                  animate={stage === "pulling" ? { y: -15, opacity: 1 } : { y: 150, opacity: 0 }}
-                  transition={{ duration: 2.8, delay: 0.3 }}
-                  className="absolute inset-x-6 top-14 bottom-14 bg-[#FFFDF9] text-[#220308] rounded-xl shadow-[0_25px_50px_rgba(0,0,0,0.6)] p-6 flex flex-col items-center justify-center text-center z-30 border-2 border-[#FBE8C9]"
+                  initial={{ y: 180, opacity: 0 }}
+                  animate={stage === "pulling" ? { y: -5, opacity: 1 } : { y: 180, opacity: 0 }}
+                  transition={{ duration: 1.6, ease: "easeInOut" }}
+                  className="absolute inset-x-5 top-8 bottom-8 bg-[#FFFDF9] text-[#220308] rounded-xl shadow-[0_25px_50px_rgba(0,0,0,0.6)] p-5 flex flex-col items-center justify-between text-center z-30 border-2 border-[#FBE8C9]"
                 >
-                  <span className="text-[10px] tracking-[0.4em] uppercase text-[#801326] font-cairo font-bold">دعوة خطوبة مباركة</span>
-                  <div className="my-3 space-y-1" dir="rtl">
-                    <p className="text-xs font-bold text-stone-600"> آل أبو الخير</p>
-                    <p className="text-xs text-stone-500 font-semibold"> معين أبو الخير</p>
-                    <p className="text-base font-bold text-[#801326]">م. إبراهيم معين أبو الخير</p>
-                    <div className="w-8 h-[1px] bg-[#D4AF37] mx-auto my-1.5"></div>
-                    <p className="text-xs text-stone-500 font-semibold"> خيري أبو الخير</p>
-                    <p className="text-base font-bold text-[#801326]">م. أمل خيري أبو الخير</p>
+                  <div className="space-y-1">
+                    <span className="text-[10px] tracking-[0.4em] uppercase text-[#801326] font-cairo font-black">دعوة خطوبة مباركة</span>
+                    <div className="my-2 space-y-1.5" dir="rtl">
+                      <p className="text-base text-[#A47825] font-black font-playfair">آل أبو الخير</p>
+                      <p className="text-sm text-stone-600 font-bold">معين أبو الخير</p>
+                      <p className="text-base font-black text-[#220308] tracking-wide">م. إبراهيم معين أبو الخير</p>
+                      <div className="w-16 h-[1.5px] bg-[#D4AF37] mx-auto my-1.5"></div>
+                      <p className="text-sm text-stone-600 font-bold">خيري أبو الخير</p>
+                      <p className="text-base font-black text-[#220308] tracking-wide">م. أمل خيري أبو الخير</p>
+                    </div>
                   </div>
-                  <div className="w-12 h-[1px] bg-[#D4AF37] my-2"></div>
-                  <p className="text-xs text-stone-700 font-cairo font-bold leading-relaxed" dir="rtl">نتشرف بحضوركم حفل إشهار خطوبتنا لنشارك معاً أجمل اللحظات</p>
+
+                  <div className="w-full bg-[#FAF3EC] border border-[#D4AF37]/50 py-2 px-3 rounded-xl shadow-sm">
+                    <span className="block text-[9px] uppercase tracking-widest text-[#801326] font-bold">موعد الإشهار</span>
+                    <span className="block text-xs font-black text-[#220308] tracking-wider">الإثنين · 6 أكتوبر 2026</span>
+                  </div>
+
+                  <div className="space-y-2.5 w-full">
+                    <p className="text-[11px] text-stone-700 font-cairo font-bold leading-relaxed" dir="rtl">نتشرف بحضوركم حفل إشهار خطوبتنا لنشارك معاً أجمل اللحظات</p>
+                    
+                    <motion.button 
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      onClick={handleManualOpen}
+                      className="w-full py-3 bg-gradient-to-r from-[#801326] to-[#560B1A] hover:from-[#6B0B1F] hover:to-[#4A0916] text-[#FBE8C9] font-bold rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg transition cursor-pointer border border-[#D4AF37]/40"
+                    >
+                      <span className="tracking-wide">دخول لحفل الدعوة</span>
+                      <ArrowRight size={14} />
+                    </motion.button>
+                  </div>
                 </motion.div>
 
                 <motion.div 
                   initial={{ rotateX: 0 }}
                   animate={stage === "pulling" ? { rotateX: -180, y: -260, opacity: 0.1 } : { rotateX: 0 }}
-                  transition={{ duration: 2.2 }}
+                  transition={{ duration: 1.4 }}
                   style={{ transformOrigin: "top" }}
                   className="absolute top-0 inset-x-0 h-[260px] bg-gradient-to-b from-[#6B0B1F] via-[#4A0916] to-[#2B040A] [clip-path:polygon(0_0%,100%_0%,50%_100%)] z-40 shadow-xl border-b-2 border-[#D4AF37]/70"
                 ></motion.div>
 
                 {stage === "envelope" && (
                   <motion.div 
-                    onClick={handleOpenSequence}
+                    onClick={handleOpenEnvelope}
                     initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: [1, 1.05, 1], opacity: 1 }}
-                    transition={{ scale: { repeat: Infinity, duration: 3.5, ease: "easeInOut" } }}
-                    whileHover={{ scale: 1.1 }}
+                    animate={{ scale: [1, 1.06, 1], opacity: 1 }}
+                    transition={{ scale: { repeat: Infinity, duration: 3, ease: "easeInOut" } }}
+                    whileHover={{ scale: 1.12 }}
                     whileTap={{ scale: 0.95 }}
                     className="absolute inset-0 m-auto w-36 h-36 bg-gradient-to-br from-[#FBE8C9] via-[#D4AF37] to-[#A47825] rounded-full flex items-center justify-center shadow-[0_15px_40px_rgba(0,0,0,0.8)] border-[5px] border-[#FFFDF9] cursor-pointer z-50"
                   >
                     <div className="w-[120px] h-[120px] rounded-full border border-[#220308]/20 flex flex-col items-center justify-center bg-[#FAF3EC] shadow-inner">
                       <span className="text-[#560B1A] font-vibes text-3xl font-bold mt-1">A & I</span>
-                      <span className="text-[9px] uppercase tracking-[0.2em] text-[#801326] font-cairo font-extrabold mt-1">TAP TO OPEN</span>
+                      <span className="text-[9px] uppercase tracking-[0.2em] text-[#801326] font-cairo font-extrabold mt-1">اضغط للفتح</span>
                     </div>
                   </motion.div>
                 )}
@@ -150,17 +169,15 @@ export default function RoyalEngagementFinal() {
               className="flex-1 overflow-y-auto scrollbar-hide bg-[#0A0103] relative text-[#F9F6F0] pb-28"
             >
               
-              {/* الهيدر مع مضاعفة أعداد الفراشات والحمام المتطاير بشكل مكثف وساحر */}
+              {/* Hero Header */}
               <div className="relative w-full h-[720px] overflow-hidden flex flex-col justify-end text-center p-6 bg-cover bg-center shadow-2xl" style={{ backgroundImage: `url('${heroImage}')` }}>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A0103] via-[#0A0103]/50 to-transparent"></div>
                 
                 <div className="absolute inset-0 pointer-events-none overflow-hidden z-20">
-                  {/* حمامات إضافية متطايرة */}
                   <motion.div animate={{ x: ["-10%", "110%"], y: ["10%", "25%", "15%"], scale: [1, 1.3, 1] }} transition={{ duration: 12, repeat: Infinity, ease: "linear" }} className="absolute text-white text-2xl top-12">🕊️</motion.div>
                   <motion.div animate={{ x: ["110%", "-10%"], y: ["35%", "20%"], scale: [1.2, 1.4, 1.2] }} transition={{ duration: 15, repeat: Infinity, ease: "linear", delay: 1 }} className="absolute text-white/90 text-3xl top-28">🕊️</motion.div>
                   <motion.div animate={{ x: ["-5%", "105%"], y: ["25%", "40%"], scale: [0.9, 1.2] }} transition={{ duration: 18, repeat: Infinity, ease: "linear", delay: 3 }} className="absolute text-white/95 text-2xl top-44">🕊️</motion.div>
 
-                  {/* فراشات ذهبية متطايرة بكثافة */}
                   <motion.div animate={{ y: [0, -70, 0], x: [0, 35, -20, 0], rotate: [0, 20, -20, 0] }} transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }} className="absolute top-20 right-6 w-9 h-9 text-[#D4AF37] z-20 drop-shadow-md">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-1.5 2-4 4-6 4-2 0-3-1-3-2.5C3 3 5 2 7 2c2.5 0 4.5 1 5 1zm0 0c1.5 2 4 4 6 4 2 0 3-1 3-2.5C21 3 19 2 17 2c-2.5 0-4.5 1-5 1zm0 5c-2 3-5 6-8 7-2 1-3 0-3-1 0-1.5 1.5-3 3-4 2-1 6-1 8-2zm0 0c2 3 5 6 8 7 2 1 3 0 3-1 0-1.5-1.5-3-3-4-2-1-6-1-8-2zm-2 9c0 2-1 4-3 5-1 .5-2 0-2-1 0-1 1-2 2-3 1-.5 2-.5 3-.7zm4 0c0 2 1 4 3 5 1 .5 2 0 2-1 0-1-1-2-2-3-1-.5-2-.5-3-.7z"/></svg>
                   </motion.div>
@@ -179,17 +196,17 @@ export default function RoyalEngagementFinal() {
                   className="relative z-25 w-full space-y-3 pb-8 text-center"
                 >
                   <span className="text-xs tracking-[0.3em] uppercase text-[#D4AF37] font-cairo font-extrabold flex items-center justify-center gap-2 drop-shadow-md">
-                    <Sparkles size={14} /> حفل الخطوبة · 06.10.2026 <Sparkles size={14} />
+                    <Sparkles size={14} /> حفل إشهار الخطوبة · 06.10.2026 <Sparkles size={14} />
                   </span>
                   
-                  <div className="bg-[#0A0103]/60 backdrop-blur-md p-4 rounded-3xl border border-[#D4AF37]/40 shadow-2xl max-w-sm mx-auto space-y-2" dir="rtl">
-    <p className="text-base text-[#EED299] font-bold"> آل أبو الخير</p>
-    <p className="text-base text-stone-300">معين أبو الخير</p>
-    <p className="text-lg font-bold text-white tracking-wide">م. إبراهيم معين أبو الخير</p>
-    <div className="w-16 h-[1px] bg-[#D4AF37] mx-auto my-1"></div>
-    <p className="text-base text-stone-300"> خيري أبو الخير</p>
-    <p className="text-lg font-bold text-white tracking-wide">م. أمل خيري أبو الخير</p>
-</div>
+                  <div className="bg-[#0A0103]/75 backdrop-blur-md p-5 rounded-3xl border border-[#D4AF37]/50 shadow-2xl max-w-sm mx-auto space-y-2.5" dir="rtl">
+                    <p className="text-base text-[#EED299] font-bold">آل أبو الخير</p>
+                    <p className="text-base text-stone-300 font-semibold">معين أبو الخير</p>
+                    <p className="text-lg font-bold text-white tracking-wide">م. إبراهيم معين أبو الخير</p>
+                    <div className="w-20 h-[1px] bg-[#D4AF37] mx-auto my-1.5"></div>
+                    <p className="text-base text-stone-300 font-semibold">خيري أبو الخير</p>
+                    <p className="text-lg font-bold text-white tracking-wide">م. أمل خيري أبو الخير</p>
+                  </div>
 
                   <p className="text-xs text-[#EED299] tracking-[0.2em] font-cairo font-semibold pt-1">ننتظر لقاءكم بكل الحب والسرور</p>
                 </motion.div>
@@ -211,7 +228,7 @@ export default function RoyalEngagementFinal() {
               >
                 <Heart className="mx-auto text-[#D4AF37]" size={34} />
                 <h3 className="text-3xl font-vibes text-[#801326] font-bold">
-                  ليلة العمر
+                في مطلع الحكاية
                 </h3>
                 <p className="text-xs text-stone-700 leading-relaxed font-cairo font-bold max-w-sm mx-auto" dir="rtl">
                   حين تتقاطع دروب القلوب وتتزين الأيام بالفرح، يسعدنا حضوركم لنشارك معاً بداية قصة حبنا الأبدية.
@@ -254,7 +271,7 @@ export default function RoyalEngagementFinal() {
                 </svg>
               </div>
 
-              {/* التبويبات أصبحت باللغة الإنجليزية كما طلبتِ تماماً */}
+              {/* Milestones */}
               <motion.div 
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -263,10 +280,10 @@ export default function RoyalEngagementFinal() {
                 className="bg-[#FAF7F2] text-[#220308] px-6 py-10 text-center space-y-5 shadow-md"
               >
                 <h3 className="text-xs font-cairo tracking-[0.3em] uppercase font-black text-[#801326]">
-                  Milestones of Joy
+                تشريفكم تمام الفرح
                 </h3>
                 <div className="flex justify-center gap-2">
-                  {["First Glance", "The Promise", "Future Together"].map((tab, idx) => (
+                  {["استهلال اللقاء", "تشريف الحضور", "تمام السعادة"].map((tab, idx) => (
                     <button 
                       key={idx}
                       onClick={() => setActiveTab(idx)}
@@ -378,7 +395,7 @@ export default function RoyalEngagementFinal() {
                 </svg>
               </div>
 
-              {/* نتشرف بحضوركم */}
+              {/* Final Note */}
               <div className="bg-[#220308] px-6 py-14 text-center space-y-4">
                 <Star className="mx-auto text-[#D4AF37]" size={30} />
                 <h3 className="text-xs font-cairo tracking-[0.3em] uppercase font-bold text-[#D4AF37]">
@@ -388,8 +405,7 @@ export default function RoyalEngagementFinal() {
                   حضوركم يزهر ليلتنا ويزيدها بهجة وسروراً.
                 </p>
                 <div className="pt-3 text-base font-playfair font-bold text-[#D4AF37]" dir="rtl">
-               
-                  المهندس إبراهيم معين أبو الخير & المهندسة أمل خيري أبو الخير
+                  م. إبراهيم معين أبو الخير & م. أمل خيري أبو الخير
                 </div>
               </div>
 

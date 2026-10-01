@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://post-pi-topaz.vercel.app"),
   title: "خطوبة إبراهيم وأمل",
-  description: "حفل خطوبة إبراهيم وأمل",
+  description: "حفل خطوبة إبراهيم وأمل - نتشرف بحضوركم لنشارك معاً أسمى معاني الفرح",
   openGraph: {
     title: "خطوبة إبراهيم وأمل",
     description: "يسعدنا حضوركم لنشارك معاً أسمى معاني الفرح",
@@ -22,6 +23,11 @@ export const metadata: Metadata = {
     siteName: "دعوة اشهار امل وابراهيم",
     locale: "ar_SA",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "خطوبة إبراهيم وأمل",
+    description: "يسعدنا حضوركم لنشارك معاً أسمى معاني الفرح",
   },
 };
 
